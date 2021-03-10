@@ -23,6 +23,9 @@ class Curso(object):
             cls(nome, sigla, tipo, descricao, coordenador,
                 duracao, diurno, noturno)
         )
+    @classmethod
+    def listar(cls):
+        return Curso.__dados    
 
 
 class Disciplina(object):
@@ -63,3 +66,7 @@ class Premio(object):
         Premio.__dados.append(
             cls(titulo, descricao, curso)
         )
+
+    @classmethod
+    def listar(cls):
+        return Premio.__dados
