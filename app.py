@@ -8,6 +8,8 @@ from website.controllers import website_bp
 
 app = Flask(__name__)
 
+app.secret_key = 'MINHA-CHAVE-SECRETAS'
+
 app.register_blueprint(website_bp)
 app.register_blueprint(admin_bp, url_prefix='/admin')
 

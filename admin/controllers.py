@@ -1,4 +1,4 @@
-from flask import Blueprint, redirect, request, render_template
+from flask import Blueprint, redirect, request, render_template, session, redirect
 from database.classes import Curso
 
 admin_bp = Blueprint(
@@ -10,6 +10,8 @@ admin_bp = Blueprint(
 
 @admin_bp.route('/')
 def home():
+    if 'usuario' not in session:
+        return redirect ('/entrar')
     return render_template('admin/home.html')
 
 

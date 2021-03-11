@@ -30,7 +30,13 @@
                     {% endfor %}
                 </div>
             </div>
-            <a class="botao acesso" href="/entrar">Entrar</a>
+            {% if session.usuario %}
+                <a class="botao acesso" href="/sair">Sair</a>
+                <span>{{ session.usuario }}</span>
+            {% else %}
+                <a class="botao acesso" href="/entrar">Entrar</a>
+            {% endif %}
+
             <a class="menu-icone" href="#"></a>
         </nav>
     </header>

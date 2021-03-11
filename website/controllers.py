@@ -1,5 +1,5 @@
 from database.classes import Curso, Disciplina, Premio
-from flask import Blueprint, render_template, request
+from flask import Blueprint, render_template, request, session, redirect
 
 
 website_bp = Blueprint(
@@ -23,11 +23,29 @@ def sobre():
         'sobre.html'
     )
 
+@website_bp.route('/sair')
+def sair():
+    session.clear()
+    return redirect('/')
 
-@website_bp.route('/entrar')
+@website_bp.route('/entrar', methods=['GET', 'POST'])
 def entrar():
+
+    erros = []
+    if request.method=='POST':
+        form = request.form
+        usuario = form.get('usuario')
+        senha = form.get('senha')
+
+        if usuario == 'admin' and senha == 'teste123*':
+            session['usuario'] = 'Administrador'
+            return redirect('/admin')
+        else:
+            erros.append('Usuário e ou senha incorretos !')
+
     return render_template(
-        'entrar.html'
+        'entrar.html',
+        erros = erros
     )
 
 
